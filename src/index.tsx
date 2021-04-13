@@ -2,9 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 const App = (): React.ReactElement => {
-  const num: number = 2;
+  const num = 2;
 
   return <div>React boilerplate App {num} </div>
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>, document.getElementById('root'));

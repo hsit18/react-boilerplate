@@ -1,9 +1,10 @@
 require("dotenv").config();
 
 const webpack = require("webpack");
+const ESLintPlugin = require("eslint-webpack-plugin");
 const forkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
-var PACKAGE = require("../package.json");
+const PACKAGE = require("../package.json");
 const PATHS = require("./paths");
 const envConfig = require("./envConfig");
 
@@ -54,6 +55,11 @@ module.exports = {
       PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL),
       API: JSON.stringify(Config.apiUrl),
     }),
-    new forkTsCheckerWebpackPlugin(),
+    new forkTsCheckerWebpackPlugin({
+      async: false,
+    }),
+    new ESLintPlugin({
+      extensions: ["js", "ts", "tsx"],
+    }),
   ],
 };
